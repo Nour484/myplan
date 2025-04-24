@@ -64,6 +64,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   Provider.of<ItemModel>(context, listen: false).selectedImage!,
                 );
                 Provider.of<ItemModel>(context, listen: false).addItem(Item(
+                  fav: false,
                   title: title.text,
                   body: body.text,
                   images: imageListCopy,

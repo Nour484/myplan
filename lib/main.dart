@@ -6,6 +6,7 @@ import 'package:taskbygithub/profile/profile_model/profile.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'add_items/item_model.dart';
+import 'favorite/favorite_model.dart';
 import 'home/home_page.dart';
 
 void main()  async{
@@ -22,6 +23,10 @@ void main()  async{
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (BuildContext context) => ItemModel(),
+    ),
+
+    ChangeNotifierProvider(
+      create: (BuildContext context) => FavoriteModel(),
     ),
     ChangeNotifierProvider(
       create: (BuildContext context) => ProfileModel(),
