@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taskbygithub/add_items/item_model.dart';
+import 'package:taskbygithub/add_items/srevice/service.dart';
 
-import '../../home/home_page.dart';
+import '../../home/nav_bar.dart';
 import '../item.dart';
 import '../widget/widget.dart';
 
@@ -35,14 +37,16 @@ class _AddItemScreenState extends State<AddItemScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
         ),
-        body: MergeSemantics(
-          child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("asset/background.jpg"),
-              )),
-              child: ListView(
+        body:
+        // MergeSemantics(
+        //   child: Container(
+        //       decoration: BoxDecoration(
+        //           image: DecorationImage(
+        //         fit: BoxFit.cover,
+        //         image: AssetImage("asset/background.jpg"),
+        //       )),
+        //       child:
+              ListView(
                 children: [
                   SizedBox(
                     height: 30,
@@ -54,31 +58,41 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     body: body,
                   ),
                 ],
-              )),
+             // )),
         ),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.save),
-            onPressed: () {
+            onPressed: ()  async{
               if (_formKey.currentState!.validate()) {
                 final imageListCopy = List<File>.from(
                   Provider.of<ItemModel>(context, listen: false).selectedImage!,
                 );
-                Provider.of<ItemModel>(context, listen: false).addItem(Item(
+                // Provider.of<ItemModel>(context, listen: false).addItem(Item(
+                //   id: Random().nextInt(100),
+                //   title: title.text,
+                //   body: body.text,
+                //   images: imageListCopy,
+                // ));
+
+                final dbHelper = TreeHelper();
+                await dbHelper.openDb();
+                final insertedItem =  await dbHelper.
+                insert(Item(
+                 // id: Random().nextInt(100),
                   title: title.text,
                   body: body.text,
-                  images: imageListCopy,
+                  images:  imageListCopy.map((file) => file.path).join(','),
                 ));
-
                 // print(Item(
                 //   title: title.text,
                 //   body: body.text,
                 //   images: imageListCopy,
                 // ));
-                Provider.of<ItemModel>(context, listen: false)
-                    .selectedImage!
-                    .clear();
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                Provider.of<ItemModel>(context, listen: false).addItem(insertedItem);
+                    // .selectedImage!
+                    // .clear();
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => NavBar()));
               }
             }));
   }

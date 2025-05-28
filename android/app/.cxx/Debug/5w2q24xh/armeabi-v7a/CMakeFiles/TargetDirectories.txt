@@ -1,0 +1,2 @@
+C:/Users/Nour Ahmed/taskbygithub/android/app/.cxx/Debug/5w2q24xh/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Nour Ahmed/taskbygithub/android/app/.cxx/Debug/5w2q24xh/armeabi-v7a/CMakeFiles/rebuild_cache.dir

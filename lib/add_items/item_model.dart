@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taskbygithub/add_items/srevice/service.dart';
 
 import 'item.dart';
 
@@ -39,6 +40,15 @@ class ItemModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setItems(List<Item> newItems) {
+    items = newItems;
+    notifyListeners();
+  }
 
-
+  Future<void> loadItemsFromDb() async {
+    final dbHelper = TreeHelper();
+    await dbHelper.openDb();
+    final dbItems = await dbHelper.getItem();
+    setItems(dbItems);
+  }
 }

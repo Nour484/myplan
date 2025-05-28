@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taskbygithub/add_items/item_model.dart';
@@ -12,6 +14,8 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemModel = Provider.of<ItemModel>(context);
     final selectedItem = itemModel.selectedItem;
+    final imagePaths = selectedItem!.images!.split(','); // Convert string to List<String>
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -30,8 +34,11 @@ class DetailsPage extends StatelessWidget {
         return ListView(children: [
           item.items == null || item.items!.isEmpty
               ? Image.asset("asset/tree.jpg")
-              : Image.file(
-            selectedItem!.images![0],
+              :
+
+
+          Image.file(
+            selectedItem!.images.split(',').map((path) => File(path)).toList().first,
                   height: 300,
                   fit: BoxFit.cover,
                   width: double.infinity,
@@ -39,7 +46,7 @@ class DetailsPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              FavoriteWidget(),
+              FavoriteWidget( index: item.items.indexOf(selectedItem) ,),
               IconButton(onPressed: () {}, icon: Icon(Icons.share)),
             ],
           ),
@@ -60,9 +67,10 @@ class DetailsPage extends StatelessWidget {
               : SizedBox(
                   height: 500,
                   child: GridView.builder(
-                      itemCount: selectedItem.images!.length,
+                      itemCount: imagePaths!.length,
                       itemBuilder: (context, index) => Image.file(
-                        selectedItem!.images![index],
+
+            File(imagePaths[index]),
                             height: 200,
                             width: 200,
                             fit: BoxFit.cover,
