@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taskbygithub/add_items/item_model.dart';
@@ -12,6 +14,8 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemModel = Provider.of<ItemModel>(context);
     final selectedItem = itemModel.selectedItem;
+    final imagePaths = selectedItem!.images.split(','); // Convert string to List<String>
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -23,15 +27,18 @@ class DetailsPage extends StatelessWidget {
               icon: Icon(Icons.account_box))
         ],
         centerTitle: true,
-           title: Text("The ${ selectedItem!.title}"),
+           title: Text(  selectedItem.title),
       ),
       body: Consumer<ItemModel>(
           builder: (BuildContext context, item, Widget? child) {
         return ListView(children: [
-          item.items == null || item.items!.isEmpty
+          item.items.isEmpty
               ? Image.asset("asset/tree.jpg")
-              : Image.file(
-            selectedItem!.images![0],
+              :
+
+
+          Image.file(
+            selectedItem.images.split(',').map((path) => File(path)).toList().first,
                   height: 300,
                   fit: BoxFit.cover,
                   width: double.infinity,
@@ -39,17 +46,17 @@ class DetailsPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              FavoriteWidget(),
+              FavoriteWidget( index: item.items.indexOf(selectedItem) ,),
               IconButton(onPressed: () {}, icon: Icon(Icons.share)),
             ],
           ),
           Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                  textAlign: TextAlign.justify,
-                  item.items[0].body ??
+                  textAlign: TextAlign.end,
+                  selectedItem.body ??
                       "A tree is a tall plant with a woody stem, branches, and leaves. It plays a vital role in nature by producing oxygen, providing shade, and offering a details to many animals. Trees absorb carbon dioxide and help reduce air pollution. They come in many types, like oak, pine, and mango. Trees also prevent soil erosion and are important for the water cycle. People use trees for wood, paper, and fruit. In cities and forests, trees add beauty and support life. Planting and protecting trees is essential for a healthy environment and a better future for all living things.")),
-          item.items[0].images == null || item.items[0].images!.isEmpty
+          item.items[0].images.isEmpty
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -60,9 +67,10 @@ class DetailsPage extends StatelessWidget {
               : SizedBox(
                   height: 500,
                   child: GridView.builder(
-                      itemCount: selectedItem.images!.length,
+                      itemCount: imagePaths.length,
                       itemBuilder: (context, index) => Image.file(
-                        selectedItem!.images![index],
+
+            File(imagePaths[index]),
                             height: 200,
                             width: 200,
                             fit: BoxFit.cover,
