@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.file(
-                              item!.items[index].images.split(',').map((path) => File(path)).toList().first,
+                              item.items[index].images.split(',').map((path) => File(path)).toList().first,
                              // item.items[index].images![0],
                               fit: BoxFit.cover,
                               height: 200,

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -75,12 +74,15 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 // ));
 
                 final dbHelper = TreeHelper();
-                await dbHelper.openDb();
+                final  b=TreeHelper();
+                print (dbHelper== b) ;
+              await dbHelper.openDb();
                 final insertedItem =  await dbHelper.
                 insert(Item(
                  // id: Random().nextInt(100),
                   title: title.text,
                   body: body.text,
+                  fav:   false,
                   images:  imageListCopy.map((file) => file.path).join(','),
                 ));
                 // print(Item(

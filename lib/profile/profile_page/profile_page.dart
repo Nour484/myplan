@@ -26,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
        setState(() {
-         selectedImage = File(image!.path);
+         selectedImage = File(image.path);
        });
 
 
@@ -131,7 +131,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ));
                       },
-                      icon: Icon(
+                      icon:const Icon(
                         //color: Colors.grey,
                         Icons.camera_alt,
                         size: 35,

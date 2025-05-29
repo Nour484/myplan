@@ -16,12 +16,10 @@ class ItemModel extends ChangeNotifier {
   Future<void> imageSelector() async {
     List<XFile>? images = await imagePicker.pickMultiImage();
 
-    if (images != null) {
-      selectedImage!
-          .addAll(images.map((toElement) => File(toElement!.path)).toList());
-      notifyListeners();
+    selectedImage!
+        .addAll(images.map((toElement) => File(toElement.path)).toList());
+    notifyListeners();
     }
-  }
 
   void removeImage(int index) {
     selectedImage!.removeAt(index);

@@ -3,7 +3,6 @@
 
   import 'package:flutter/material.dart';
 import 'package:taskbygithub/api/api_view.dart';
-import 'package:taskbygithub/favorite/favorite_view.dart';
 import 'package:taskbygithub/home/home_page.dart';
 import 'package:taskbygithub/profile/profile_page/profile_page.dart';
 import 'package:taskbygithub/quotes/quote_view.dart';

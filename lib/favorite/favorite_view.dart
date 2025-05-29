@@ -11,7 +11,7 @@ class FavoriteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar:  AppBar(
           title: Text("Favorite"),
         ),
         body: Consumer<FavoriteModel>(
@@ -32,7 +32,7 @@ class FavoriteView extends StatelessWidget {
                       child: Column(
                         children: [
                           Image.file(
-                            current!.images.split(',').map((path) => File(path)).toList().first,
+                            current.images.split(',').map((path) => File(path)).toList().first,
                            // current.images![0],
                             height: 170,
                             width: 200,
