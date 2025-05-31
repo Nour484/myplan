@@ -11,11 +11,11 @@ class FormWidget extends StatelessWidget {
   final TextEditingController body;
 
   const FormWidget({
-    Key? key,
+    super.key,
     required this.formKey,
     required this.title,
     required this.body,
-  }) : super(key: key);
+  });
 
   // @override
   @override

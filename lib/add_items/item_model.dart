@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taskbygithub/add_items/srevice/service.dart';
 
 import 'item.dart';
 
@@ -15,12 +16,10 @@ class ItemModel extends ChangeNotifier {
   Future<void> imageSelector() async {
     List<XFile>? images = await imagePicker.pickMultiImage();
 
-    if (images != null) {
-      selectedImage!
-          .addAll(images.map((toElement) => File(toElement!.path)).toList());
-      notifyListeners();
+    selectedImage!
+        .addAll(images.map((toElement) => File(toElement.path)).toList());
+    notifyListeners();
     }
-  }
 
   void removeImage(int index) {
     selectedImage!.removeAt(index);
@@ -39,6 +38,15 @@ class ItemModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setItems(List<Item> newItems) {
+    items = newItems;
+    notifyListeners();
+  }
 
-
+  Future<void> loadItemsFromDb() async {
+    final dbHelper = TreeHelper();
+    await dbHelper.openDb();
+    final dbItems = await dbHelper.getItem();
+    setItems(dbItems);
+  }
 }
