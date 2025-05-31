@@ -25,7 +25,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
   void dispose() {
     title.dispose();
     body.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -37,62 +36,55 @@ class _AddItemScreenState extends State<AddItemScreen> {
           backgroundColor: Colors.transparent,
         ),
         body:
-        // MergeSemantics(
-        //   child: Container(
-        //       decoration: BoxDecoration(
-        //           image: DecorationImage(
-        //         fit: BoxFit.cover,
-        //         image: AssetImage("asset/background.jpg"),
-        //       )),
-        //       child:
-              ListView(
-                children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  ImageSelectorWidget(),
-                  FormWidget(
-                    formKey: _formKey,
-                    title: title,
-                    body: body,
-                  ),
-                ],
-             // )),
+            // MergeSemantics(
+            //   child: Container(
+            //       decoration: BoxDecoration(
+            //           image: DecorationImage(
+            //         fit: BoxFit.cover,
+            //         image: AssetImage("asset/background.jpg"),
+            //       )),
+            //       child:
+            ListView(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            ImageSelectorWidget(),
+            FormWidget(
+              formKey: _formKey,
+              title: title,
+              body: body,
+            ),
+          ],
+          // )),
         ),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.save),
-            onPressed: ()  async{
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 final imageListCopy = List<File>.from(
                   Provider.of<ItemModel>(context, listen: false).selectedImage!,
                 );
-                // Provider.of<ItemModel>(context, listen: false).addItem(Item(
-                //   id: Random().nextInt(100),
-                //   title: title.text,
-                //   body: body.text,
-                //   images: imageListCopy,
-                // ));
+               
 
                 final dbHelper = TreeHelper();
-                final  b=TreeHelper();
-                print (dbHelper== b) ;
-              await dbHelper.openDb();
-                final insertedItem =  await dbHelper.
-                insert(Item(
-                 // id: Random().nextInt(100),
+                final b = TreeHelper();
+                print(dbHelper == b);
+                await dbHelper.openDb();
+                final insertedItem = await dbHelper.insert(Item(
+                  // id: Random().nextInt(100),
                   title: title.text,
                   body: body.text,
-                  fav:   false,
-                  images:  imageListCopy.map((file) => file.path).join(','),
+                  fav: false,
+                  images: imageListCopy.map((file) => file.path).join(','),
                 ));
-                // print(Item(
-                //   title: title.text,
-                //   body: body.text,
-                //   images: imageListCopy,
-                // ));
-                Provider.of<ItemModel>(context, listen: false).addItem(insertedItem);
-                    // .selectedImage!
-                    // .clear();
+
+                Provider.of<ItemModel>(context, listen: false)
+                    .addItem(insertedItem);
+
+                Provider.of<ItemModel>(context, listen: false)
+                    .selectedImage!
+                    .clear();
                 Navigator.pushReplacement(
                     context, MaterialPageRoute(builder: (context) => NavBar()));
               }

@@ -1,4 +1,4 @@
-import 'package:sqflite/sqflite.dart' ;
+import 'package:sqflite/sqflite.dart';
 import 'package:taskbygithub/add_items/item.dart';
 
 class TreeHelper {
@@ -23,7 +23,7 @@ class TreeHelper {
         title TEXT,
         body TEXT,
         images TEXT,
-        fav BOOL
+        fav INTEGER
       )
     ''');
     });
@@ -39,24 +39,21 @@ class TreeHelper {
       "tree",
     );
 
-    return maps.map((map) {
-      return Item(
-        id: map['id'] as int,
-        title: map['title'] as String,
-        body: map['body'] as String,
-        fav: map['fav'] as bool,
-        images: map['images'], // Ensure your `Item` class uses `String`
-      );
-    }).toList();
+    return maps.map((map) => Item.formJsom(map)).toList();
   }
 
+  Future updateItem(
+    Item newItem,
+    String title,
+  ) {
+    return db.update(
+        "tree",
+        {
+          'fav': newItem.fav ? 1 : 0,
+        },
+        where: "title = ?",
+        whereArgs: [newItem.title]);
+  }
 
-
-
-
-
-
-
-
-
+  deleteItem() {}
 }
