@@ -53,7 +53,12 @@ class TreeHelper {
         },
         where: "title = ?",
         whereArgs: [newItem.title]);
+
   }
 
-  deleteItem() {}
+  Future<int> deleteItem(
+    Item newItem,
+  ) async {
+    return await db.delete("tree", where: "title = ?", whereArgs: [newItem.title]);
+  }
 }
