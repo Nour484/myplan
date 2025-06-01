@@ -14,7 +14,7 @@ class UserService {
     return box.values.toList();
   }
 
-  Future<void> updateUser(int index, Profile updatedUser) async {
+  Future<void> updateUser(int index, updatedUser) async {
     final box = await Hive.openBox<Profile>(_boxName);
     await box.putAt(index, updatedUser);
   }

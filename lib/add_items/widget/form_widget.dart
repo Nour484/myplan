@@ -1,35 +1,38 @@
-
-
 import 'package:flutter/material.dart';
 
 class FormWidget extends StatelessWidget {
-
-
-
   final GlobalKey<FormState> formKey;
   final TextEditingController title;
   final TextEditingController body;
 
   const FormWidget({
-    Key? key,
+// <<<<<<< HEAD
+//     Key? key,
+//     required this.formKey,
+//     required this.title,
+//     required this.body,
+//   }) : super(key: key);
+// =======
+    super.key,
     required this.formKey,
     required this.title,
     required this.body,
-  }) : super(key: key);
+  });
+
+// >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b
 
   // @override
   @override
   Widget build(BuildContext context) {
-    return   Form(
+    return Form(
       key: formKey,
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-
               controller: title,
-              validator:  (title) {
+              validator: (title) {
                 if (title == null || title.isEmpty) {
                   return " Please Enter Title";
                 } else {
@@ -40,13 +43,11 @@ class FormWidget extends StatelessWidget {
                   hintText: "title", border: OutlineInputBorder()),
             ),
           ),
-
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
               controller: body,
-              validator:  (body) {
+              validator: (body) {
                 if (body == null || body.isEmpty) {
                   return " Please Enter Title";
                 } else {
@@ -61,6 +62,6 @@ class FormWidget extends StatelessWidget {
           ),
         ],
       ),
-    ) ;
+    );
   }
 }

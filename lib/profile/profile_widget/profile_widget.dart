@@ -11,7 +11,11 @@ class Options extends StatelessWidget {
 
   Colors? color;
 
-  String ? selectedImage;
+// <<<<<<< HEAD
+//   String ? selectedImage;
+// =======
+  File ? selectedImage;
+// >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b
 
   VoidCallback onPressed;
 
