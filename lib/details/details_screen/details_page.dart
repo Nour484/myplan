@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taskbygithub/add_items/item_model.dart';
+import 'package:taskbygithub/add_items/srevice/service.dart';
 
 import '../../add_items/view/add_item_screen.dart';
 import '../../profile/profile_page/profile_page.dart';
@@ -73,7 +74,11 @@ class DetailsPage extends StatelessWidget {
                 index: item.items.indexOf(selectedItem),
               ),
 // >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b
-              IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+              IconButton(
+                  onPressed: () {
+                    TreeHelper().deleteItem(selectedItem);
+                  },
+                  icon: Icon(Icons.share)),
             ],
           ),
           Padding(

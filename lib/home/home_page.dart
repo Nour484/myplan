@@ -1,4 +1,5 @@
 import 'dart:io';
+
 // <<<<<<< HEAD
 // =======
 
@@ -42,7 +43,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ItemModel>(context, listen: false).loadItemsFromDb(); // this calls setItems()
+    Provider.of<ItemModel>(context, listen: false)
+        .loadItemsFromDb(); // this calls setItems()
   }
 
   @override
@@ -152,7 +154,6 @@ class _HomePageState extends State<HomePage> {
 //           Navigator.push(context,
 // =======
 
-
           Stack(
             // alignment: Alignment.topRight,
             children: [
@@ -169,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                   )),
               CircleAvatar(
                   radius: 10,
-              //    backgroundColor: Colors.red.shade100,
+                  //    backgroundColor: Colors.red.shade100,
                   child:
                       Text("${Provider.of<FavoriteModel>(context).fav.length}"))
             ],
@@ -192,6 +193,37 @@ class _HomePageState extends State<HomePage> {
                       childAspectRatio: 0.7,
                     ),
                     itemBuilder: (BuildContext context, int index) => InkWell(
+                      onLongPress: () {
+                        showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                                    title: Text("Delete"),
+                                    content: Text(
+                                        "Are you sure you want to delete ${item.items[index].title}?"),
+                                    actions: [
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.red,
+                                          foregroundColor: Colors.white,
+                                        ),
+                                        onPressed: () async {
+                                          await TreeHelper()
+                                              .deleteItem(item.items[index]);
+                                          item.items =
+                                              await TreeHelper().getItem();
+                                          if (!mounted) return;
+                                          setState(() {});
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text("delete"),
+                                      ),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: Text("Close"),
+                                      )
+                                    ]));
+                      },
                       onTap: () {
                         Provider.of<ItemModel>(context, listen: false)
                             .setSelectedItem(Item(
@@ -211,8 +243,12 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.file(
-                              item.items[index].images.split(',').map((path) => File(path)).toList().first,
-                             // item.items[index].images![0],
+                              item.items[index].images
+                                  .split(',')
+                                  .map((path) => File(path))
+                                  .toList()
+                                  .first,
+                              // item.items[index].images![0],
                               fit: BoxFit.cover,
                               height: 200,
                               width: 200,
@@ -235,7 +271,8 @@ class _HomePageState extends State<HomePage> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushReplacement(context,
+          Navigator.pushReplacement(
+              context,
 // >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b
               MaterialPageRoute(builder: (context) => AddItemScreen()));
         },

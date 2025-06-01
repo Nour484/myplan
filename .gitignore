@@ -43,3 +43,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+# تجاهل مجلدات البناء المؤقتة الخاصة بالـ Android NDK/CMake
+/android/app/.cxx/
+
+# تجاهل ملفات البناء الخاصة بـ Linux Flutter
+/linux/flutter/generated_plugin_registrant.cc
+/linux/flutter/generated_plugin_registrant.h
+/linux/flutter/generated_plugins.cmake
+
+# تجاهل ملفات البناء الخاصة بـ macOS Flutter
+/macos/Flutter/GeneratedPluginRegistrant.swift
