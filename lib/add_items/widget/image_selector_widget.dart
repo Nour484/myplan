@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../item_model.dart';
 
 class ImageSelectorWidget extends StatelessWidget {
@@ -11,20 +11,30 @@ class ImageSelectorWidget extends StatelessWidget {
     return Consumer<ItemModel>(
         builder: (BuildContext context, item, Widget? child) {
       return item.selectedImage!.isEmpty
-          ? Container(
-              color: Colors.white38,
-              height: 150,
-              width: MediaQuery.sizeOf(context).width - 20,
-              child: IconButton(
-                  onPressed: () {
-                    item.imageSelector();
-                  },
-                  icon: Icon(Icons.camera_alt)),
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.blue.shade50,
+                    borderRadius: BorderRadius.circular(25)),
+                //color: Colors.white38,
+                height: 150,
+                width: MediaQuery.sizeOf(context).width - 20,
+                child: IconButton(
+                    onPressed: () {
+                      item.imageSelector();
+                    },
+                    icon: Icon(
+                      Icons.camera_alt,
+                      size: 50,
+                      color: Colors.grey.shade800,
+                    )),
+              ),
             )
           : Row(
               children: [
                 Container(
-                  color: Colors.white38,
+                  color: Colors.blue.shade50,
                   height: 100,
                   width: 100,
                   child: IconButton(
