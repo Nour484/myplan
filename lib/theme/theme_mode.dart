@@ -5,7 +5,7 @@ class ModeTheme {
   static final lightMode = ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.green.shade50 ,
+        seedColor: Colors.blue.shade50 ,
         brightness: Brightness.light,
       ));
 
@@ -13,7 +13,7 @@ class ModeTheme {
   static final darkMode = ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.green.shade50,
+        seedColor: Colors.blue.shade50,
         brightness: Brightness.dark,
       ));
 }

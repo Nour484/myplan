@@ -31,17 +31,26 @@ class FormWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              controller: title,
-              validator: (title) {
-                if (title == null || title.isEmpty) {
-                  return " Please Enter Title";
-                } else {
-                  return null;
-                }
-              },
-              decoration: InputDecoration(
-                  hintText: "title", border: OutlineInputBorder()),
-            ),
+                controller: title,
+                validator: (title) {
+                  if (title == null || title.isEmpty) {
+                    return " Please Enter Title";
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  disabledBorder: InputBorder.none,
+                  filled: true,
+                  fillColor: Colors.blue.shade50,
+                  hintText: "title",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                        color: Colors
+                            .blue.shade100), // Outline color when not focused
+                  ),
+                )),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -57,9 +66,19 @@ class FormWidget extends StatelessWidget {
               minLines: 3,
               maxLines: 7,
               decoration: InputDecoration(
-                  hintText: "body", border: OutlineInputBorder()),
+                disabledBorder: InputBorder.none,
+                fillColor: Colors.blue.shade50,
+                filled: true,
+                hintText: "body",
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                      color: Colors
+                          .blue.shade100), // Outline color when not focused
+                ),
+              ),
             ),
-          ),
+          )
         ],
       ),
     );

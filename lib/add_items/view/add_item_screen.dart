@@ -33,23 +33,28 @@ class _AddItemScreenState extends State<AddItemScreen> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          centerTitle: true,
+          title:  Text("Add new Item"),
           backgroundColor: Colors.transparent,
         ),
         body:
-        // MergeSemantics(
-        //   child: Container(
-        //       decoration: BoxDecoration(
-        //           image: DecorationImage(
-        //         fit: BoxFit.cover,
-        //         image: AssetImage("asset/background.jpg"),
-        //       )),
-        //       child:
-        ListView(
+            // MergeSemantics(
+            //   child: Container(
+            //       decoration: BoxDecoration(
+            //           image: DecorationImage(
+            //         fit: BoxFit.cover,
+            //         image: AssetImage("asset/background.jpg"),
+            //       )),
+            //       child:
+            ListView(
           children: [
             SizedBox(
               height: 30,
             ),
             ImageSelectorWidget(),
+            SizedBox(
+              height: 20,
+            ),
             FormWidget(
               formKey: _formKey,
               title: title,
@@ -66,11 +71,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   Provider.of<ItemModel>(context, listen: false).selectedImage!,
                 );
 
-
                 final dbHelper = TreeHelper();
                 final b = TreeHelper();
                 print(dbHelper == b);
-                await dbHelper.openDb();
+                // await dbHelper.openDb();
                 final insertedItem = await dbHelper.insert(Item(
                   // id: Random().nextInt(100),
                   title: title.text,

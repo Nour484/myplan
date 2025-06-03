@@ -43,12 +43,13 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     Provider.of<ItemModel>(context, listen: false)
         .loadItemsFromDb(); // this calls setItems()
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
 // >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b
     return Scaffold(
       appBar: AppBar(
@@ -158,7 +159,9 @@ class _HomePageState extends State<HomePage> {
             // alignment: Alignment.topRight,
             children: [
               IconButton(
-                  onPressed: () {
+                  onPressed: () async {
+
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -168,11 +171,11 @@ class _HomePageState extends State<HomePage> {
                     Icons.favorite,
                     color: Colors.red.shade700,
                   )),
-              CircleAvatar(
-                  radius: 10,
-                  //    backgroundColor: Colors.red.shade100,
-                  child:
-                      Text("${Provider.of<FavoriteModel>(context).fav.length}"))
+              // CircleAvatar(
+              //     radius: 10,
+              //     //    backgroundColor: Colors.red.shade100,
+              //     child:
+              //         Text("${ 0}"))
             ],
           )
         ],

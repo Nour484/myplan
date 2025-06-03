@@ -30,7 +30,7 @@ class _QuoteViewState extends State<QuoteView> {
         color:  Colors.blue.shade50,
           image: DecorationImage(
         fit: BoxFit.cover,
-        image:  Provider.of<ThemeModel>(context).lightModel ?   AssetImage("asset/db_d.jpeg") :  AssetImage("asset/bg.jpeg"),
+        image:  Provider.of<ThemeModel>(context).lightModel ?   AssetImage("asset/d2.jpeg") :  AssetImage("asset/d1.jpeg"),
       )
 
       ),
@@ -47,7 +47,7 @@ class _QuoteViewState extends State<QuoteView> {
 
                         children: [
                           SizedBox(
-                            height: 300,
+                            height: 150,
                           ),
 
                           Container(

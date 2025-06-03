@@ -25,6 +25,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taskbygithub/theme/theme_mode.dart';
 import 'package:taskbygithub/theme/theme_model.dart';
+import 'package:taskbygithub/timer/timer_model.dart';
 import 'add_items/item_model.dart';
 import 'favorite/favorite_model.dart';
 import 'home/nav_bar.dart';
@@ -49,6 +50,10 @@ void main() async {
 // =======
     ChangeNotifierProvider(
       create: (BuildContext context) => FavoriteModel(),
+    ),
+
+    ChangeNotifierProvider(
+      create: (BuildContext context) => TimerProvider(),
     ),
     ChangeNotifierProvider(create: (context) => ThemeModel()..getTheme())
 // >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b

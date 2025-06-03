@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 // <<<<<<< HEAD
 // =======
 import 'package:taskbygithub/add_items/srevice/service.dart';
+import 'package:taskbygithub/service/db_helper.dart';
 // >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b
 
 import 'item.dart';
@@ -61,9 +62,9 @@ class ItemModel extends ChangeNotifier {
   }
 
   Future<void> loadItemsFromDb() async {
-    final dbHelper = TreeHelper();
+     final dbHelper = DBHelper();
     await dbHelper.openDb();
-    final dbItems = await dbHelper.getItem();
+    final dbItems = await TreeHelper().getItem();
     setItems(dbItems);
   }
 // >>>>>>> da4b4a4caed6d7d182adc9d225e4dc344093d15b
