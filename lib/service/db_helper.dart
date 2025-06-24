@@ -33,15 +33,14 @@ class DBHelper {
     ''');
 
       await db.execute('''
-      CREATE TABLE favorite (
+      CREATE TABLE quotes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT,
-        body TEXT,
-        images TEXT,
-        fav INTEGER
+        quote TEXT,
+        author TEXT,
+        category TEXT
+        
       )
     ''');
-
     });
   }
 }

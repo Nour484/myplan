@@ -7,23 +7,23 @@ class FavoriteModel extends ChangeNotifier {
 
   List<Item> get fav => _fav;
 
-  void add(Item item) {
-    if (!_fav.contains(item)) {
-      _fav.add(item);
-    }
-    notifyListeners();
-  }
-
-  void remove(Item item) {
-    if (_fav.contains(item)) {
-      _fav.remove(item);
-    }
-    notifyListeners();
-  }
+  // void add(Item item) {
+  //   if (!_fav.contains(item)) {
+  //     _fav.add(item);
+  //   }
+  //   notifyListeners();
+  // }
+  //
+  // void remove(Item item) {
+  //   if (_fav.contains(item)) {
+  //     _fav.remove(item);
+  //   }
+  //   notifyListeners();
+  // }
 
   void isFavorite(Item item) {
     item.fav = !item.fav;
-    item.fav ? add(item) : remove(item);
+    // item.fav ? add(item) : remove(item);
 
     notifyListeners();
   }
