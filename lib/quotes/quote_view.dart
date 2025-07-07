@@ -114,12 +114,6 @@ class _QuoteViewState extends State<QuoteView> {
                 );
               } else if (snapShot.hasError) {
                 return Center(child: Text("${snapShot.hasError}"));
-                //   Center(
-                //     child: Icon(
-                //   Icons.wifi_off_rounded,
-                //   size: 200,
-                //   color: Colors.green.shade100,
-                // ));
               }
 
               return Center(child: CircularProgressIndicator());

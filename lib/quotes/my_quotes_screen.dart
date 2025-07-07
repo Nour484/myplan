@@ -1,32 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:taskbygithub/quotes/quotes_helper.dart';
-//
-// class MyQuotesScreen extends StatelessWidget {
-//   const MyQuotesScreen({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder(
-//         future: QuotesHelper().getQuotes(),
-//         builder: (context, snapshot) {
-//           final quotes = snapshot.data;
-//           if (snapshot.hasError) {
-//             return Text("Error");
-//           }
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return CircularProgressIndicator();
-//           }
-//
-//           return ListView.builder(
-//               itemCount: quotes!.length,
-//               itemBuilder: (context, index) {
-//                 return ListTile(
-//                   title: Text(snapshot.data![index].quote),
-//                 );
-//               });
-//         });
-//   }
-// }
 import 'package:flutter/material.dart';
 import 'package:taskbygithub/quotes/quotes_helper.dart';
 
@@ -65,7 +36,6 @@ class MyQuotesScreen extends StatelessWidget {
                   TextSelectionGestureDetector(
                     child: Text(quotes[index].quote),
                   ),
-                  // Text(quotes[index].category),
                 ],
               );
             },
